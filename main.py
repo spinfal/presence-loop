@@ -3,6 +3,7 @@ import requests as r
 import time as t
 from termcolor import colored as cl
 import sys, os
+import keep_alive
 
 print(cl('lets get shwifty', 'green'))
 token = input(cl('your token: ', 'white'))
