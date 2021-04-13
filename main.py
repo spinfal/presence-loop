@@ -43,7 +43,7 @@ while True:
   if res.status_code != 200:
     print('\nan error has occured, please try again.\n' + str(res.content) + '\n')
     sys.exit()
-  print('\033[H\033[J')
+  os.system('cls')
   print('status: ' + str(res.status_code) + '\nstatus set to: ' + setstatus[choice])
   choice = choice + 1
   t.sleep(int(delay))
