@@ -1,33 +1,31 @@
 import requests as r
 #import random
 import time as t
-from termcolor import colored as cl
 import sys, os
-import keep_alive
 
-print(cl('lets get shwifty', 'green'))
-token = input(cl('your token: ', 'white'))
+print('lets get shwifty')
+token = input('your token: ')
 check = r.get('https://discordapp.com/api/v8/users/@me/settings', headers={'Authorization': token})
 if check.status_code != 200:
-  print(cl('there was an error with that token\n', 'red') + str(check.content))
+  print('there was an error with that token\n' + str(check.content))
   sys.exit()
-delay = input(cl('interval (leave blank for default): ', 'white'))
+delay = input('interval (leave blank for default): ')
 if delay == "":
-  delay = 4
+  delay = 2
 elif int(delay) < 1:
-  print(cl('you cannot enter anything less than 1', 'red')) # i mean u can lol, just be careful /shrug
+  print('you cannot enter anything less than 1') # i mean u can lol, just be careful /shrug
   t.sleep(3)
   os.system('python3 main.py')
-limit = input(cl('include invisible (yes or no): ', 'white'))
+limit = input('include invisible (yes or no): ')
 if limit == 'yes':
   limit = 4
 elif limit == 'no':
   limit = 3
 else:
-  print(cl('invalid choice', 'red'))
+  print('invalid choice')
   t.sleep(3)
   os.system('python3 main.py')
-print(cl('\nstarting...', 'cyan'))
+print('\nstarting...')
 t.sleep(2)
 
 headers = {
@@ -43,9 +41,9 @@ while True:
     choice = 0
   res = r.patch('https://discordapp.com/api/v8/users/@me/settings', json={"status": setstatus[choice]}, headers=headers)
   if res.status_code != 200:
-    print(cl('\nan error has occured, please try again.\n', 'red') + str(res.content) + '\n')
+    print('\nan error has occured, please try again.\n' + str(res.content) + '\n')
     sys.exit()
   print('\033[H\033[J')
-  print('status: ' + str(res.status_code) + cl('\nstatus set to: ' + setstatus[choice], 'green'))
+  print('status: ' + str(res.status_code) + '\nstatus set to: ' + setstatus[choice])
   choice = choice + 1
   t.sleep(int(delay))
